@@ -1,0 +1,343 @@
+:root{
+  --bg:#eef7f7;
+  --card:#ffffff;
+  --muted:#556b6b;
+  --accent:#0ea5a4;
+  --accent-2:#06b6d4;
+  --danger:#ef4444;
+  --text:#06323a;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+  background:var(--bg);
+  color:var(--text)
+}
+
+.app{display:flex;min-height:100vh}
+
+.sidebar{
+  width:240px;
+  background:linear-gradient(180deg,var(--accent),var(--accent-2));
+  color:#fff;padding:18px
+}
+.logo{font-weight:800;font-size:18px;margin-bottom:6px}
+.subl{font-size:12px;opacity:0.9}
+.nav{margin-top:18px}
+.nav button{
+  width:100%;
+  background:transparent;border:0;color:#e8f9f9;padding:12px;
+  border-radius:10px;text-align:left;cursor:pointer;margin-bottom:8px;
+  font-size:15px;
+}
+.nav button:hover{background:rgba(255,255,255,0.12)}
+
+.exportBtn{
+  width:100%;
+  padding:10px;border-radius:10px;border:0;
+  background:#06323a;color:#fff;cursor:pointer;
+}
+
+.main{flex:1;padding:18px}
+
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:12px}
+.pageTitle{font-size:26px;color:#074e4e;font-weight:800}
+
+.controls{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  flex-wrap:nowrap;  
+}
+.controls button{
+  white-space:nowrap;  
+}
+
+.controls #logoutBtn{
+  margin-left:auto;
+}
+
+
+.cityInput{
+  padding:10px 12px;
+  border-radius:14px;             
+  border:1px solid rgba(6,50,50,0.15);
+  outline:none;
+  background:#fff;
+  width:170px;
+  min-width:170px;
+}
+
+
+
+.btn{
+  padding:10px 14px;
+  border-radius:12px;
+  border:0;
+  background:var(--accent);   
+  color:#fff;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.btn:hover{
+  opacity:0.92;
+}
+
+
+.grid{
+  display:grid;
+  grid-template-columns:360px 1fr;
+  gap:16px;
+  align-items:flex-start;
+}
+
+.widget{
+  background:var(--card);padding:14px;border-radius:14px;
+  box-shadow:0 8px 18px rgba(3,15,15,0.05);
+  margin-bottom:14px;
+}
+
+.widget h3{font-size:16px;margin-bottom:10px;color:#0b4747}
+
+.aqGauge{display:flex;gap:14px;align-items:center}
+
+.gaugeWrap{
+  width:260px;height:260px;
+  background:var(--card);
+  border-radius:999px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+
+.aqInfo{flex:1;min-width:140px}
+
+.stationName{font-weight:800;font-size:14px}
+.cityName{font-size:12px;color:var(--muted);margin-top:2px}
+.aqText{font-size:40px;font-weight:900;color:#0b4747;margin-top:10px}
+.cProps{font-size:13px;color:var(--muted);margin-top:6px}
+
+.smallStats{display:flex;gap:10px;margin-top:14px}
+.stat{
+  flex:1;padding:10px;border-radius:12px;
+  background:linear-gradient(180deg,#f7fffe,#ffffff);
+  text-align:center
+}
+.stat .num{font-weight:900;font-size:20px;color:#074e4e}
+
+.healthBox{
+  font-size:14px;
+  padding:12px;
+  border-radius:12px;
+  background:#f0fbfb;
+  font-weight:700;
+}
+
+.charts{display:grid;grid-template-rows:auto auto auto;gap:14px}
+.chartCard{
+  background:var(--card);
+  padding:14px;border-radius:14px;
+  box-shadow:0 8px 18px rgba(3,15,15,0.05)
+}
+
+.chatRow{display:flex;gap:10px;margin-top:10px}
+.chatInput{
+  flex:1;padding:10px;border-radius:12px;border:1px solid #cbd5d5;
+}
+.langSel{padding:10px;border-radius:12px;border:1px solid #cbd5d5;}
+.chatBtn{
+  padding:10px 16px;border-radius:12px;border:0;
+  background:var(--accent);color:#fff;cursor:pointer;font-weight:700;
+}
+.chatReply{
+  margin-top:10px;
+  font-size:13px;
+  background:#f0fbfb;
+  padding:12px;border-radius:12px;min-height:48px;
+}
+
+.feedbackBox{
+  width:100%;height:80px;
+  padding:10px;border-radius:12px;border:1px solid #cbd5d5;
+  font-size:13px;
+}
+
+.btnPrimarySmall{
+  margin-top:10px;
+  padding:10px 14px;border-radius:12px;border:0;
+  background:var(--accent);color:#fff;cursor:pointer;font-weight:700;
+}
+
+.statusText{margin-top:10px;font-size:13px;color:var(--text)}
+
+.rating-stars span{font-size:22px;cursor:pointer;margin-right:4px}
+.rating-stars span.active{color:#fbbf24}
+
+.footer{margin-top:20px;text-align:center;color:var(--muted);font-size:13px}
+
+/* Auth overlay */
+.auth-overlay{
+  position:fixed;inset:0;background:rgba(6,50,50,0.12);
+  display:flex;align-items:center;justify-content:center;z-index:20;
+}
+.auth-card{
+  width:340px;background:#fff;padding:20px;border-radius:16px;
+  box-shadow:0 18px 40px rgba(0,0,0,0.12);
+}
+.auth-card input{
+  width:100%;margin-top:10px;padding:10px;border-radius:12px;
+  border:1px solid #cbd5d5;font-size:14px;
+}
+.auth-actions{display:flex;gap:10px;margin-top:12px}
+.btn-primary{
+  flex:1;padding:10px;border-radius:12px;border:0;
+  background:var(--accent);color:#fff;cursor:pointer;font-weight:800;
+}
+.btn-secondary{
+  flex:1;padding:10px;border-radius:12px;border:1px solid #cbd5d5;
+  background:#fff;color:var(--text);cursor:pointer;font-weight:800;
+}
+.auth-msg{font-size:13px;color:var(--muted);margin-top:10px;min-height:18px}
+
+/* =========================
+   DARK MODE THEME
+========================= */
+
+/* Smooth transition for theme change */
+body, .widget, .chartCard, .auth-card, input, textarea, select, button, .healthBox, .chatReply {
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+/* When dark mode is enabled */
+body.dark {
+  --bg: #071315;
+  --card: #0d1f22;
+  --muted: #a3c2c2;
+  --accent: #18b7b0;
+  --accent-2: #1bd6ff;
+  --danger: #ff4d4d;
+  --text: #e6ffff;
+}
+
+/* General */
+body.dark {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Sidebar stays good but slightly darker */
+body.dark .sidebar {
+  background: linear-gradient(180deg, #0b3f3f, #062a33);
+}
+
+/* Widget + chart cards */
+body.dark .widget,
+body.dark .chartCard {
+  background: var(--card);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Titles */
+body.dark .pageTitle {
+  color: var(--text);
+}
+
+body.dark .widget h3,
+body.dark .chartCard h3 {
+  color: #cfffff;
+}
+
+/* Inputs / dropdown / textarea */
+body.dark .cityInput,
+body.dark .chatInput,
+body.dark .langSel,
+body.dark .feedbackBox,
+body.dark .auth-card input {
+  background: #071a1d;
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+body.dark .cityInput::placeholder,
+body.dark .chatInput::placeholder,
+body.dark .feedbackBox::placeholder,
+body.dark .auth-card input::placeholder {
+  color: rgba(230, 255, 255, 0.55);
+}
+
+/* Buttons */
+body.dark .btn,
+body.dark .chatBtn,
+body.dark .btnPrimarySmall,
+body.dark .btn-primary {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #001a1a;
+  font-weight: 900;
+}
+
+body.dark .btn:hover,
+body.dark .chatBtn:hover,
+body.dark .btnPrimarySmall:hover,
+body.dark .btn-primary:hover {
+  opacity: 0.92;
+}
+
+/* Secondary button */
+body.dark .btn-secondary {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text);
+}
+
+/* Health box & chat reply panels */
+body.dark .healthBox,
+body.dark .chatReply {
+  background: #071a1d;
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Small stats cards */
+body.dark .stat {
+  background: linear-gradient(180deg, #0b2327, #0d1f22);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+body.dark .stat .num {
+  color: #cfffff;
+}
+
+/* Footer */
+body.dark .footer {
+  color: rgba(230, 255, 255, 0.55);
+}
+
+/* Auth overlay */
+body.dark .auth-overlay {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+body.dark .auth-card {
+  background: #0d1f22;
+  color: var(--text);
+}
+
+/* Export button */
+body.dark .exportBtn {
+  background: #0b2327;
+  color: var(--text);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+body.dark .exportBtn:hover {
+  background: #0f2f33;
+}
+
+
+/* Responsive */
+@media(max-width:900px){
+  .grid{grid-template-columns:1fr}
+  .sidebar{display:none}
+}

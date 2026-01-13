@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AirAware — India</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+
+  <!-- AUTH OVERLAY -->
+  <div id="authOverlay" class="auth-overlay">
+    <div class="auth-card">
+      <h2>Welcome to AirAware</h2>
+      <p>Sign up or log in to view the AQI dashboard.</p>
+
+      <input id="authEmail" type="email" placeholder="Email" />
+      <input id="authPassword" type="password" placeholder="Password" />
+
+      <div class="auth-actions">
+        <button id="btnLogin" class="btn-secondary">Log in</button>
+        <button id="btnSignup" class="btn-primary">Sign up</button>
+      </div>
+
+      <div id="authMsg" class="auth-msg"></div>
+    </div>
+  </div>
+
+  <div class="app" id="appRoot" style="display:none">
+    <aside class="sidebar">
+      <div class="logo">AirAware • India</div>
+      <div class="subl">Dataset based ML prediction</div>
+
+      <div class="nav">
+        <button id="st1">New Delhi</button>
+        <button id="st2">Mumbai</button>
+        <button id="st3">Kolkata</button>
+        <button id="st4">Chennai</button>
+        <button id="st5">Bengaluru</button>
+      </div>
+
+      <div style="margin-top:18px;font-size:13px">Quick actions</div>
+      <div style="margin-top:8px;display:flex;gap:8px">
+        <button id="export" class="exportBtn">Export dataset</button>
+      </div>
+    </aside>
+
+    <main class="main">
+
+      <div class="topbar">
+        <div>
+          <div class="pageTitle">AirAware — Smart AQI Prediction</div>
+          <div style="font-size:13px;color:var(--muted)">AQI prediction using Kaggle dataset + ML model</div>
+        </div>
+
+        <div class="controls">
+          <input id="cityInput" class="cityInput" placeholder="Enter city..." />
+          <button id="cityPredictBtn" class="btn">Predict City</button>
+          <button id="downloadBtn" class="btn">Download Report</button>
+          <button id="themeBtn" class="btn">🌙 Dark</button>
+          <button id="logoutBtn" class="btn">Logout</button>
+        </div>
+      </div>
+
+      <div class="grid">
+
+        <!-- LEFT COLUMN -->
+        <div>
+
+          <div class="widget">
+            <h3>Live City</h3>
+            <div class="aqGauge">
+              <div class="gaugeWrap">
+                <canvas id="aqGauge" width="260" height="260"></canvas>
+              </div>
+
+              <div class="aqInfo">
+                <div id="stationName" class="stationName">City</div>
+                <div id="cityName" class="cityName">--</div>
+                <div class="aqText" id="aqNum">--</div>
+
+                <div class="cProps">
+                  PM2.5: <span id="pmv">--</span> µg/m³ • CO: <span id="cov">--</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="smallStats">
+              <div class="stat"><div class="num" id="stat1">--</div><div>Min AQI</div></div>
+              <div class="stat"><div class="num" id="stat2">--</div><div>Current AQI</div></div>
+              <div class="stat"><div class="num" id="stat3">--</div><div>Max AQI</div></div>
+            </div>
+          </div>
+
+          <div class="widget">
+            <h3>Pollutant Composition</h3>
+            <canvas id="compPie" width="260" height="160"></canvas>
+          </div>
+
+          <div class="widget">
+            <h3>Rate this dashboard</h3>
+
+            <div class="rating-stars" id="ratingStars">
+              <span data-v="1">★</span>
+              <span data-v="2">★</span>
+              <span data-v="3">★</span>
+              <span data-v="4">★</span>
+              <span data-v="5">★</span>
+            </div>
+
+            <button id="submitRating" class="btnPrimarySmall">
+              Submit rating
+            </button>
+
+            <div id="ratingStatus" class="statusText"></div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div>
+
+          <div class="widget">
+            <h3>Health Advice</h3>
+            <div id="healthAdvice" class="healthBox">
+              Select a city to see health advice.
+            </div>
+          </div>
+
+          <div class="widget">
+            <h3>Ask AI about Air Quality</h3>
+
+            <div class="chatRow">
+              <input id="chatInput" class="chatInput" type="text" placeholder="Ask: What is AQI?" />
+
+              <select id="langSel" class="langSel">
+                <option value="en">English</option>
+                <option value="te">తెలుగు</option>
+                <option value="hi">Hindi</option>
+              </select>
+
+              <button id="chatSend" class="chatBtn">Ask</button>
+            </div>
+
+            <div id="chatReply" class="chatReply">
+              AI reply will appear here.
+            </div>
+          </div>
+
+          <div class="widget">
+            <h3>User Feedback</h3>
+
+            <textarea id="feedbackBox" class="feedbackBox" placeholder="Write feedback here..."></textarea>
+
+            <button id="sendFeedback" class="btnPrimarySmall">Submit Feedback</button>
+
+            <div id="feedbackStatus" class="statusText"></div>
+          </div>
+
+          <div class="charts">
+            <div class="chartCard">
+              <h3>Hourly AQI (24h)</h3>
+              <canvas id="hourlyLine" height="90"></canvas>
+            </div>
+
+            <div class="chartCard">
+              <h3>Prediction: Now / 1Y / 5Y</h3>
+              <canvas id="predBar" height="90"></canvas>
+            </div>
+
+            <div class="chartCard">
+              <h3>Past 9 Years — AQI Trend</h3>
+              <canvas id="trendArea" height="110"></canvas>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <footer class="footer">
+        © AirAware • India <br>
+        Trained using Kaggle AQI Dataset (Delhi, Mumbai, Kolkata, Chennai, Bengaluru)
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
